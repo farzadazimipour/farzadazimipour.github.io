@@ -1,21 +1,21 @@
 [
   {
-    "title": "TaskMaster Pro",
-    "description": "A modern task management app built with Jetpack Compose, featuring offline sync, dark mode, and Material You design.",
+    "title": "Banobat",
+    "description": "The banobat system allows you to take an appointment for doctors and medical centers that are collaborating with the system for unlimited access for all. Doctors and medical centers who intend to cooperate with the system can visit their website at banobat.ir and ask for free attendance services for their clients. Users can install non-public online chat services by installing this application for free. Created with Java in 2016.",
     "image": "https://images.unsplash.com/photo-1611224923853-80b023f02d71?w=400&auto=format",
     "github": "https://github.com/farzadazimipoor/taskmaster-pro",
     "link": "https://play.google.com/store/apps/details?id=com.farzad.taskmaster"
   },
   {
-    "title": "WeatherWise",
-    "description": "Clean architecture weather app with MVVM pattern, Room database, and beautiful animations using Lottie.",
+    "title": "iBazzar",
+    "description": "Buy & sell real estate, cars, fashion, electronics & more. A trusted marketplace for shopping and selling online. Whether you're looking to buy everyday essentials or sell your own car, house, or used items, iBazzar brings everything you need in one easy-to-use app. From electronics and clothing to kitchenware and self-care products, enjoy a seamless shopping experience designed for Iraq. Created with Kotlin & Android Views with Clean Architecture and MVVM.",
     "image": "https://images.unsplash.com/photo-1504608524841-42fe6f032b4b?w=400&auto=format",
     "github": "https://github.com/farzadazimipoor/weatherwise",
     "link": "https://play.google.com/store/apps/details?id=com.farzad.weather"
   },
   {
-    "title": "FitTracker",
-    "description": "Fitness tracking app with Kotlin Coroutines, Firebase integration, and real-time workout monitoring.",
+    "title": "TUI APP",
+    "description": "The project that I am working on it now. Multi-Module, scalable App with clean architecture and MVVM with Kotlin and Jetpack Compose.",
     "image": "https://images.unsplash.com/photo-1571019613454-1cb2f99b2d8b?w=400&auto=format",
     "github": "https://github.com/farzadazimipoor/fittracker"
   }
