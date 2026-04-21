@@ -1,0 +1,925 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>AI Landscape — Engineer's Big Picture</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Space+Mono:wght@400;700&family=Syne:wght@400;600;700;800&display=swap');
+
+  :root {
+    --bg: #0a0a0f;
+    --surface: #111118;
+    --border: #1e1e2e;
+    --accent1: #00f5c4;
+    --accent2: #7c6af7;
+    --accent3: #f97316;
+    --accent4: #38bdf8;
+    --text: #e2e8f0;
+    --muted: #64748b;
+    --card: #13131f;
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  body {
+    background: var(--bg);
+    color: var(--text);
+    font-family: 'Syne', sans-serif;
+    min-height: 100vh;
+    overflow-x: hidden;
+  }
+
+  /* Background grid */
+  body::before {
+    content: '';
+    position: fixed;
+    inset: 0;
+    background-image:
+      linear-gradient(rgba(124,106,247,0.03) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(124,106,247,0.03) 1px, transparent 1px);
+    background-size: 40px 40px;
+    pointer-events: none;
+    z-index: 0;
+  }
+
+  .page {
+    position: relative;
+    z-index: 1;
+    max-width: 1100px;
+    margin: 0 auto;
+    padding: 48px 24px 80px;
+  }
+
+  /* Header */
+  header {
+    text-align: center;
+    margin-bottom: 64px;
+  }
+
+  .eyebrow {
+    font-family: 'Space Mono', monospace;
+    font-size: 11px;
+    letter-spacing: 3px;
+    color: var(--accent1);
+    text-transform: uppercase;
+    margin-bottom: 16px;
+  }
+
+  h1 {
+    font-size: clamp(2rem, 5vw, 3.5rem);
+    font-weight: 800;
+    line-height: 1.1;
+    background: linear-gradient(135deg, #fff 0%, var(--accent1) 50%, var(--accent2) 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    margin-bottom: 16px;
+  }
+
+  .subtitle {
+    color: var(--muted);
+    font-size: 1rem;
+    font-weight: 400;
+    max-width: 520px;
+    margin: 0 auto;
+    line-height: 1.6;
+  }
+
+  /* Section headers */
+  .section-label {
+    font-family: 'Space Mono', monospace;
+    font-size: 10px;
+    letter-spacing: 3px;
+    color: var(--muted);
+    text-transform: uppercase;
+    margin-bottom: 8px;
+  }
+
+  .section-title {
+    font-size: 1.4rem;
+    font-weight: 700;
+    margin-bottom: 24px;
+    color: #fff;
+  }
+
+  /* =========================================
+     DIAGRAM 1: THE HIERARCHY
+  ========================================= */
+  .hierarchy-container {
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-radius: 16px;
+    padding: 40px 32px;
+    margin-bottom: 48px;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .hierarchy-container::before {
+    content: '';
+    position: absolute;
+    top: 0; left: 0; right: 0;
+    height: 2px;
+    background: linear-gradient(90deg, var(--accent2), var(--accent1));
+  }
+
+  .hierarchy {
+    display: flex;
+    flex-direction: column;
+    gap: 0;
+    align-items: center;
+  }
+
+  .h-level {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    position: relative;
+  }
+
+  .h-connector {
+    width: 2px;
+    height: 28px;
+    background: linear-gradient(180deg, var(--accent2) 0%, rgba(124,106,247,0.2) 100%);
+    margin: 0 auto;
+  }
+
+  .h-box {
+    border-radius: 12px;
+    padding: 18px 28px;
+    text-align: center;
+    position: relative;
+    border: 1px solid transparent;
+    transition: transform 0.2s;
+  }
+
+  .h-box:hover { transform: scale(1.02); }
+
+  .h-box.level-1 {
+    background: linear-gradient(135deg, rgba(124,106,247,0.2), rgba(0,245,196,0.1));
+    border-color: var(--accent2);
+    width: 72%;
+  }
+
+  .h-box.level-2 {
+    background: linear-gradient(135deg, rgba(0,245,196,0.12), rgba(56,189,248,0.08));
+    border-color: rgba(0,245,196,0.4);
+    width: 62%;
+  }
+
+  .h-box.level-3 {
+    background: linear-gradient(135deg, rgba(56,189,248,0.12), rgba(249,115,22,0.06));
+    border-color: rgba(56,189,248,0.4);
+    width: 55%;
+  }
+
+  .h-box.level-4 {
+    background: linear-gradient(135deg, rgba(249,115,22,0.12), rgba(124,106,247,0.06));
+    border-color: rgba(249,115,22,0.4);
+    width: 48%;
+  }
+
+  .h-tag {
+    font-family: 'Space Mono', monospace;
+    font-size: 9px;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    margin-bottom: 6px;
+    opacity: 0.7;
+  }
+
+  .h-title {
+    font-size: 1.1rem;
+    font-weight: 700;
+    margin-bottom: 4px;
+  }
+
+  .h-desc {
+    font-size: 0.78rem;
+    color: var(--muted);
+    line-height: 1.4;
+  }
+
+  /* =========================================
+     DIAGRAM 2: LLM TYPES GRID
+  ========================================= */
+  .cards-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+    gap: 16px;
+    margin-bottom: 48px;
+  }
+
+  .card {
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    padding: 24px;
+    position: relative;
+    overflow: hidden;
+    transition: border-color 0.2s, transform 0.2s;
+  }
+
+  .card:hover {
+    transform: translateY(-2px);
+  }
+
+  .card::after {
+    content: '';
+    position: absolute;
+    top: 0; left: 0; right: 0;
+    height: 3px;
+  }
+
+  .card.cloud::after { background: var(--accent2); }
+  .card.local::after { background: var(--accent1); }
+  .card.ondevice::after { background: var(--accent3); }
+
+  .card:hover.cloud { border-color: var(--accent2); }
+  .card:hover.local { border-color: var(--accent1); }
+  .card:hover.ondevice { border-color: var(--accent3); }
+
+  .card-icon {
+    font-size: 1.6rem;
+    margin-bottom: 12px;
+    display: block;
+  }
+
+  .card-title {
+    font-size: 1rem;
+    font-weight: 700;
+    margin-bottom: 8px;
+  }
+
+  .card-desc {
+    font-size: 0.8rem;
+    color: var(--muted);
+    line-height: 1.5;
+    margin-bottom: 12px;
+  }
+
+  .badge-row {
+    display: flex;
+    gap: 6px;
+    flex-wrap: wrap;
+  }
+
+  .badge {
+    font-family: 'Space Mono', monospace;
+    font-size: 9px;
+    padding: 3px 8px;
+    border-radius: 4px;
+    letter-spacing: 0.5px;
+  }
+
+  .badge-purple { background: rgba(124,106,247,0.2); color: var(--accent2); }
+  .badge-green  { background: rgba(0,245,196,0.15); color: var(--accent1); }
+  .badge-orange { background: rgba(249,115,22,0.15); color: var(--accent3); }
+  .badge-blue   { background: rgba(56,189,248,0.15); color: var(--accent4); }
+
+  /* =========================================
+     DIAGRAM 3: AGENT ANATOMY
+  ========================================= */
+  .agent-diagram {
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-radius: 16px;
+    padding: 40px 32px;
+    margin-bottom: 48px;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .agent-diagram::before {
+    content: '';
+    position: absolute;
+    top: 0; left: 0; right: 0;
+    height: 2px;
+    background: linear-gradient(90deg, var(--accent3), var(--accent4));
+  }
+
+  .agent-core {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 32px;
+    gap: 0;
+    flex-wrap: wrap;
+  }
+
+  .agent-brain {
+    background: linear-gradient(135deg, rgba(124,106,247,0.25), rgba(0,245,196,0.1));
+    border: 2px solid var(--accent2);
+    border-radius: 50%;
+    width: 140px;
+    height: 140px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    position: relative;
+    z-index: 2;
+    flex-shrink: 0;
+  }
+
+  .agent-brain-icon { font-size: 2rem; }
+  .agent-brain-label { font-size: 0.7rem; font-weight: 700; margin-top: 4px; color: var(--accent2); letter-spacing: 1px; }
+
+  .agent-spokes {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 12px;
+    flex: 1;
+    min-width: 260px;
+  }
+
+  .agent-spoke {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    padding: 14px;
+    position: relative;
+  }
+
+  .spoke-title {
+    font-family: 'Space Mono', monospace;
+    font-size: 9px;
+    letter-spacing: 1.5px;
+    text-transform: uppercase;
+    color: var(--accent4);
+    margin-bottom: 6px;
+  }
+
+  .spoke-items {
+    list-style: none;
+    font-size: 0.75rem;
+    color: var(--muted);
+    line-height: 1.8;
+  }
+
+  .spoke-items li::before {
+    content: '▸ ';
+    color: var(--accent1);
+  }
+
+  .loop-diagram {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0;
+    flex-wrap: wrap;
+    margin-top: 8px;
+  }
+
+  .loop-step {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    padding: 10px 16px;
+    font-size: 0.8rem;
+    font-weight: 600;
+    text-align: center;
+    white-space: nowrap;
+  }
+
+  .loop-arrow {
+    font-size: 1rem;
+    color: var(--accent1);
+    margin: 0 6px;
+    flex-shrink: 0;
+  }
+
+  /* =========================================
+     DIAGRAM 4: TOOLS ECOSYSTEM
+  ========================================= */
+  .tools-section {
+    margin-bottom: 48px;
+  }
+
+  .tools-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 12px;
+  }
+
+  .tool-card {
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    padding: 20px;
+    transition: all 0.2s;
+    cursor: default;
+  }
+
+  .tool-card:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 8px 32px rgba(0,0,0,0.4);
+  }
+
+  .tool-card.ide:hover { border-color: var(--accent2); }
+  .tool-card.agent:hover { border-color: var(--accent1); }
+  .tool-card.llm:hover { border-color: var(--accent3); }
+  .tool-card.mobile:hover { border-color: var(--accent4); }
+
+  .tool-logo {
+    font-size: 1.4rem;
+    margin-bottom: 10px;
+    display: block;
+  }
+
+  .tool-name {
+    font-size: 0.95rem;
+    font-weight: 700;
+    margin-bottom: 4px;
+  }
+
+  .tool-category {
+    font-family: 'Space Mono', monospace;
+    font-size: 9px;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    margin-bottom: 8px;
+  }
+
+  .tool-category.ide { color: var(--accent2); }
+  .tool-category.agent { color: var(--accent1); }
+  .tool-category.llm-label { color: var(--accent3); }
+  .tool-category.mobile { color: var(--accent4); }
+
+  .tool-desc {
+    font-size: 0.75rem;
+    color: var(--muted);
+    line-height: 1.5;
+  }
+
+  /* =========================================
+     DIAGRAM 5: ANDROID ENGINEER RELEVANCE
+  ========================================= */
+  .relevance-section {
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-radius: 16px;
+    padding: 40px 32px;
+    margin-bottom: 48px;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .relevance-section::before {
+    content: '';
+    position: absolute;
+    top: 0; left: 0; right: 0;
+    height: 2px;
+    background: linear-gradient(90deg, var(--accent4), var(--accent2));
+  }
+
+  .relevance-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    gap: 16px;
+    margin-top: 8px;
+  }
+
+  .rel-item {
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    padding: 20px;
+    background: var(--surface);
+    position: relative;
+  }
+
+  .rel-number {
+    font-family: 'Space Mono', monospace;
+    font-size: 2rem;
+    font-weight: 700;
+    line-height: 1;
+    margin-bottom: 8px;
+    opacity: 0.15;
+    position: absolute;
+    top: 12px;
+    right: 16px;
+  }
+
+  .rel-title {
+    font-size: 0.9rem;
+    font-weight: 700;
+    margin-bottom: 6px;
+  }
+
+  .rel-desc {
+    font-size: 0.75rem;
+    color: var(--muted);
+    line-height: 1.5;
+  }
+
+  .rel-item.r1 { border-top: 2px solid var(--accent2); }
+  .rel-item.r2 { border-top: 2px solid var(--accent1); }
+  .rel-item.r3 { border-top: 2px solid var(--accent3); }
+  .rel-item.r4 { border-top: 2px solid var(--accent4); }
+  .rel-item.r5 { border-top: 2px solid #f472b6; }
+
+  .rel-item.r1 .rel-number { color: var(--accent2); opacity: 0.2; }
+  .rel-item.r2 .rel-number { color: var(--accent1); opacity: 0.2; }
+  .rel-item.r3 .rel-number { color: var(--accent3); opacity: 0.2; }
+  .rel-item.r4 .rel-number { color: var(--accent4); opacity: 0.2; }
+  .rel-item.r5 .rel-number { color: #f472b6; opacity: 0.2; }
+
+  /* divider */
+  .divider {
+    border: none;
+    border-top: 1px solid var(--border);
+    margin: 48px 0;
+  }
+
+  /* =========================================
+     KEY TERMS GLOSSARY
+  ========================================= */
+  .glossary {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 12px;
+    margin-bottom: 48px;
+  }
+
+  .term {
+    display: flex;
+    gap: 12px;
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    padding: 16px;
+    align-items: flex-start;
+  }
+
+  .term-key {
+    font-family: 'Space Mono', monospace;
+    font-size: 0.7rem;
+    background: rgba(124,106,247,0.15);
+    color: var(--accent2);
+    border-radius: 4px;
+    padding: 4px 8px;
+    white-space: nowrap;
+    flex-shrink: 0;
+  }
+
+  .term-val {
+    font-size: 0.78rem;
+    color: var(--muted);
+    line-height: 1.5;
+  }
+
+  /* responsive */
+  @media (max-width: 600px) {
+    .agent-spokes { grid-template-columns: 1fr; }
+    .loop-diagram { flex-direction: column; }
+    .loop-arrow { transform: rotate(90deg); }
+    .h-box { width: 90% !important; }
+  }
+
+  /* Fade in animation */
+  @keyframes fadeUp {
+    from { opacity: 0; transform: translateY(20px); }
+    to   { opacity: 1; transform: translateY(0); }
+  }
+
+  .page > * {
+    animation: fadeUp 0.5s ease both;
+  }
+  header { animation-delay: 0s; }
+  .hierarchy-container { animation-delay: 0.1s; }
+  .cards-grid { animation-delay: 0.15s; }
+  .agent-diagram { animation-delay: 0.2s; }
+  .tools-section { animation-delay: 0.25s; }
+  .relevance-section { animation-delay: 0.3s; }
+  .glossary { animation-delay: 0.35s; }
+</style>
+</head>
+<body>
+<nav style="position:fixed;top:0;left:0;right:0;z-index:100;background:rgba(10,10,15,0.9);backdrop-filter:blur(10px);border-bottom:1px solid #1e1e2e;padding:12px 24px;">
+  <a href="../index.html" style="color:#00f5c4;text-decoration:none;font-family:'Space Mono',monospace;font-size:13px;letter-spacing:1px;">← Back to Portfolio</a>
+</nav>
+<div class="page" style="padding-top:80px;">
+
+  <!-- HEADER -->
+  <header>
+    <p class="eyebrow">// Android Engineer's Reference</p>
+    <h1>The AI Landscape<br>Big Picture</h1>
+    <p class="subtitle">Everything you're hearing about — AI, LLMs, Agents, Coding tools — explained clearly with diagrams and hierarchy.</p>
+  </header>
+
+  <!-- SECTION 1: HIERARCHY -->
+  <p class="section-label">01 — The Stack</p>
+  <p class="section-title">The Hierarchy: How Everything Fits</p>
+
+  <div class="hierarchy-container">
+    <div class="hierarchy">
+
+      <div class="h-level">
+        <div class="h-box level-1">
+          <div class="h-tag" style="color:var(--accent2)">Foundation Layer</div>
+          <div class="h-title">🧠 AI / Machine Learning</div>
+          <div class="h-desc">The broad field. Teaching computers to learn from data. Everything else is built on this.</div>
+        </div>
+      </div>
+
+      <div class="h-connector"></div>
+
+      <div class="h-level">
+        <div class="h-box level-2">
+          <div class="h-tag" style="color:var(--accent1)">Subset of AI</div>
+          <div class="h-title">📖 LLM — Large Language Models</div>
+          <div class="h-desc">AI models trained on massive text. They understand and generate human language. Examples: GPT-4, Claude, Gemini, Llama. The "brain" that powers most modern AI products.</div>
+        </div>
+      </div>
+
+      <div class="h-connector"></div>
+
+      <div class="h-level">
+        <div class="h-box level-3">
+          <div class="h-tag" style="color:var(--accent4)">Built on top of LLMs</div>
+          <div class="h-title">🤖 AI Agents</div>
+          <div class="h-desc">An LLM given the ability to take actions — browse the web, run code, read files, call APIs. They can complete multi-step tasks autonomously. An agent = LLM + Tools + Loop.</div>
+        </div>
+      </div>
+
+      <div class="h-connector"></div>
+
+      <div class="h-level">
+        <div class="h-box level-4">
+          <div class="h-tag" style="color:var(--accent3)">Uses Agents</div>
+          <div class="h-title">🛠️ AI Coding Tools (Cursor, Kiro, Q, etc.)</div>
+          <div class="h-desc">Developer-facing products. They wrap LLMs/Agents into an IDE or CLI experience so you can build software faster. The tools you use day-to-day.</div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- SECTION 2: LLM TYPES -->
+  <p class="section-label">02 — The Models</p>
+  <p class="section-title">Types of LLMs You'll Encounter</p>
+
+  <div class="cards-grid">
+    <div class="card cloud">
+      <span class="card-icon">☁️</span>
+      <div class="card-title">Cloud LLMs</div>
+      <div class="card-desc">Run on company servers. You send a request, they respond. Powerful but require internet + API key + cost per token.</div>
+      <div class="badge-row">
+        <span class="badge badge-purple">GPT-4o</span>
+        <span class="badge badge-purple">Claude 3.5</span>
+        <span class="badge badge-purple">Gemini 1.5</span>
+      </div>
+    </div>
+
+    <div class="card local">
+      <span class="card-icon">💻</span>
+      <div class="card-title">Local LLMs</div>
+      <div class="card-desc">Run on your own machine. Private, offline, free after download. Less capable than cloud, but improving fast.</div>
+      <div class="badge-row">
+        <span class="badge badge-green">Llama 3</span>
+        <span class="badge badge-green">Mistral</span>
+        <span class="badge badge-green">Gemma</span>
+        <span class="badge badge-green">Phi-3</span>
+      </div>
+    </div>
+
+    <div class="card ondevice">
+      <span class="card-icon">📱</span>
+      <div class="card-title">On-Device LLMs</div>
+      <div class="card-desc">Run directly on Android/iOS. No internet needed. Relevant to you as an Android engineer — ML Kit, Gemini Nano, MediaPipe.</div>
+      <div class="badge-row">
+        <span class="badge badge-orange">Gemini Nano</span>
+        <span class="badge badge-orange">ML Kit</span>
+        <span class="badge badge-orange">MediaPipe</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- SECTION 3: AGENT ANATOMY -->
+  <p class="section-label">03 — The Brain</p>
+  <p class="section-title">How an AI Agent Actually Works</p>
+
+  <div class="agent-diagram">
+    <div style="display:flex; gap:32px; align-items:flex-start; flex-wrap:wrap;">
+      <div class="agent-brain">
+        <span class="agent-brain-icon">🧠</span>
+        <div class="agent-brain-label">LLM Core</div>
+      </div>
+
+      <div class="agent-spokes" style="flex:1; min-width:260px;">
+        <div class="agent-spoke">
+          <div class="spoke-title">🔧 Tools</div>
+          <ul class="spoke-items">
+            <li>Read/write files</li>
+            <li>Run terminal commands</li>
+            <li>Browse the web</li>
+            <li>Call APIs</li>
+          </ul>
+        </div>
+        <div class="agent-spoke">
+          <div class="spoke-title">📋 Memory / Context</div>
+          <ul class="spoke-items">
+            <li>Current conversation</li>
+            <li>Your codebase files</li>
+            <li>Rules & instructions</li>
+            <li>RAG (retrieved docs)</li>
+          </ul>
+        </div>
+        <div class="agent-spoke">
+          <div class="spoke-title">🎯 Goal / Task</div>
+          <ul class="spoke-items">
+            <li>Your prompt/request</li>
+            <li>Sub-tasks it creates</li>
+            <li>Acceptance criteria</li>
+          </ul>
+        </div>
+        <div class="agent-spoke">
+          <div class="spoke-title">🔄 Planning Loop</div>
+          <ul class="spoke-items">
+            <li>Think → Act → Observe</li>
+            <li>Self-correct on error</li>
+            <li>Iterate until done</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+
+    <div style="margin-top:28px;">
+      <div style="font-family:'Space Mono',monospace; font-size:10px; letter-spacing:2px; color:var(--muted); margin-bottom:12px; text-transform:uppercase;">The Agent Loop — runs repeatedly until task is done:</div>
+      <div class="loop-diagram">
+        <div class="loop-step" style="border-color:var(--accent2); color:var(--accent2)">📥 Receive Task</div>
+        <div class="loop-arrow">→</div>
+        <div class="loop-step" style="border-color:var(--accent4); color:var(--accent4)">🤔 Think / Plan</div>
+        <div class="loop-arrow">→</div>
+        <div class="loop-step" style="border-color:var(--accent1); color:var(--accent1)">⚡ Use a Tool</div>
+        <div class="loop-arrow">→</div>
+        <div class="loop-step" style="border-color:var(--accent3); color:var(--accent3)">👁️ Observe Result</div>
+        <div class="loop-arrow">→</div>
+        <div class="loop-step" style="border-color:#f472b6; color:#f472b6)">✅ Done? Or repeat</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- SECTION 4: YOUR TOOLS EXPLAINED -->
+  <div class="tools-section">
+    <p class="section-label">04 — The Tools You've Heard Of</p>
+    <p class="section-title">Every Tool Explained</p>
+
+    <div class="tools-grid">
+      <div class="tool-card ide">
+        <span class="tool-logo">⬛</span>
+        <div class="tool-name">Cursor</div>
+        <div class="tool-category ide">AI-Native IDE</div>
+        <div class="tool-desc">A fork of VS Code with an LLM baked in. It understands your whole codebase and can write, refactor, and explain code inline. The most popular AI coding IDE for web/backend devs.</div>
+      </div>
+
+      <div class="tool-card agent">
+        <span class="tool-logo">🌀</span>
+        <div class="tool-name">Kiro / Kiro CLI</div>
+        <div class="tool-category agent">AI Coding Agent (AWS)</div>
+        <div class="tool-desc">Amazon's agentic coding assistant. Works autonomously on multi-step tasks. The CLI version lets it run in your terminal and modify files, run builds, debug — like a junior dev at your side.</div>
+      </div>
+
+      <div class="tool-card llm">
+        <span class="tool-logo">🪐</span>
+        <div class="tool-name">Amazon Q (in Android Studio)</div>
+        <div class="tool-category llm-label">IDE Plugin (AWS)</div>
+        <div class="tool-desc">Amazon Q Developer is a plugin for Android Studio (and IntelliJ). It provides inline completions, chat, code explanations, and can scan for vulnerabilities — powered by AWS Bedrock LLMs.</div>
+      </div>
+
+      <div class="tool-card mobile">
+        <span class="tool-logo">🔮</span>
+        <div class="tool-name">Antigravity</div>
+        <div class="tool-category mobile">AI Coding Agent</div>
+        <div class="tool-desc">An autonomous coding agent focused on full-feature implementation from a spec or description. Similar to Devin — it plans, codes, runs, and iterates without you driving every step.</div>
+      </div>
+
+      <div class="tool-card ide">
+        <span class="tool-logo">🤖</span>
+        <div class="tool-name">GitHub Copilot</div>
+        <div class="tool-category ide">AI Autocomplete + Chat</div>
+        <div class="tool-desc">The OG. Lives in your IDE. Autocompletes code line-by-line, has a chat panel, and can review PRs. Powered by OpenAI Codex and GPT-4. Also works in Android Studio via plugin.</div>
+      </div>
+
+      <div class="tool-card agent">
+        <span class="tool-logo">💻</span>
+        <div class="tool-name">Claude Code</div>
+        <div class="tool-category agent">Terminal Agent (Anthropic)</div>
+        <div class="tool-desc">A CLI agent that reads your whole repo, writes files, runs tests, and fixes bugs autonomously. You give it a task in natural language and it does the work. Very strong for multi-file refactors.</div>
+      </div>
+
+      <div class="tool-card llm">
+        <span class="tool-logo">✨</span>
+        <div class="tool-name">Gemini in Android Studio</div>
+        <div class="tool-category llm-label">Official Google Plugin</div>
+        <div class="tool-desc">Google's native AI integration in Android Studio (Ladybug+). Offers code completions, Jetpack Compose previews, logcat analysis, crash insights, and Studio Bot chat. Most relevant to you as an Android dev.</div>
+      </div>
+
+      <div class="tool-card mobile">
+        <span class="tool-logo">🌐</span>
+        <div class="tool-name">MCP (Model Context Protocol)</div>
+        <div class="tool-category mobile">Protocol / Standard</div>
+        <div class="tool-desc">Not a product — a standard by Anthropic. Like USB-C for AI. Lets LLMs connect to external tools (Notion, GitHub, databases) in a standardized way. Agents use MCP to access your systems.</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- SECTION 5: RELEVANCE TO YOU -->
+  <p class="section-label">05 — What This Means for You</p>
+  <p class="section-title">Android Engineer's Relevance Map</p>
+
+  <div class="relevance-section">
+    <div class="relevance-grid">
+      <div class="rel-item r1">
+        <div class="rel-number">01</div>
+        <div class="rel-title">🧑‍💻 Use AI tools to ship faster</div>
+        <div class="rel-desc">Cursor, Copilot, Gemini in AS, Amazon Q — these make you faster at writing boilerplate, Compose UI, ViewModel logic, and unit tests. Low learning curve, immediate payoff.</div>
+      </div>
+
+      <div class="rel-item r2">
+        <div class="rel-title">📱 Integrate LLMs into your apps</div>
+        <div class="rel-number">02</div>
+        <div class="rel-desc">Call cloud LLM APIs (OpenAI, Gemini, Claude) from your Android app via Retrofit. This is a strong portfolio differentiator — like Custorix's risk analyzer feature.</div>
+      </div>
+
+      <div class="rel-item r3">
+        <div class="rel-title">🔒 On-device AI (privacy-first)</div>
+        <div class="rel-number">03</div>
+        <div class="rel-desc">Gemini Nano, ML Kit, MediaPipe — run models directly on the device with no server. Perfect for privacy-focused apps. The future of mobile AI. Rare Android skill right now.</div>
+      </div>
+
+      <div class="rel-item r4">
+        <div class="rel-title">🤖 Build AI Agents as features</div>
+        <div class="rel-number">04</div>
+        <div class="rel-desc">An agent in your app = LLM + tools (e.g. read portfolio data, call CoinGecko, generate insight). This is the cutting-edge fintech pattern. Think: "AI advisor" inside your app.</div>
+      </div>
+
+      <div class="rel-item r5">
+        <div class="rel-title">🔗 MCP for tooling workflows</div>
+        <div class="rel-number">05</div>
+        <div class="rel-desc">You're already using MCP to connect Claude to Notion. As an engineer, understanding MCP positions you to build integrations — connect your app to external systems via standardized AI interfaces.</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- GLOSSARY -->
+  <p class="section-label">06 — Quick Reference</p>
+  <p class="section-title">Key Terms Decoded</p>
+
+  <div class="glossary">
+    <div class="term">
+      <span class="term-key">Token</span>
+      <span class="term-val">A chunk of text (~4 chars). LLMs process tokens, not words. You pay per token in cloud APIs.</span>
+    </div>
+    <div class="term">
+      <span class="term-key">Context Window</span>
+      <span class="term-val">How much text an LLM can "see" at once. Bigger = can read more of your codebase at once.</span>
+    </div>
+    <div class="term">
+      <span class="term-key">RAG</span>
+      <span class="term-val">Retrieval Augmented Generation. Fetch relevant docs, inject into prompt so LLM "knows" your data without retraining.</span>
+    </div>
+    <div class="term">
+      <span class="term-key">Fine-tuning</span>
+      <span class="term-val">Retraining a base LLM on your specific data. Expensive but makes it an expert on your domain.</span>
+    </div>
+    <div class="term">
+      <span class="term-key">Prompt</span>
+      <span class="term-val">The instruction you give the LLM. Prompt engineering = writing better instructions to get better output.</span>
+    </div>
+    <div class="term">
+      <span class="term-key">Embedding</span>
+      <span class="term-val">A number array that represents text meaning. Used for semantic search — "find similar" rather than keyword match.</span>
+    </div>
+    <div class="term">
+      <span class="term-key">Function Calling</span>
+      <span class="term-val">Structured way to let an LLM call your code functions. The foundation of how agents use tools.</span>
+    </div>
+    <div class="term">
+      <span class="term-key">MCP</span>
+      <span class="term-val">Model Context Protocol. Standard protocol for connecting LLMs to external tools/data sources. Like REST but for AI agents.</span>
+    </div>
+    <div class="term">
+      <span class="term-key">Inference</span>
+      <span class="term-val">Running the model to generate output. "Running inference on device" = on-device AI, no cloud call needed.</span>
+    </div>
+    <div class="term">
+      <span class="term-key">Hallucination</span>
+      <span class="term-val">When LLMs confidently generate false information. A core challenge — always verify AI output for critical data.</span>
+    </div>
+    <div class="term">
+      <span class="term-key">System Prompt</span>
+      <span class="term-val">Hidden instructions given to the LLM before the user message. Sets personality, rules, and constraints.</span>
+    </div>
+    <div class="term">
+      <span class="term-key">Agentic</span>
+      <span class="term-val">Describes AI that acts autonomously over multiple steps, using tools, rather than just responding to one message.</span>
+    </div>
+  </div>
+
+</div>
+</body>
+</html>
