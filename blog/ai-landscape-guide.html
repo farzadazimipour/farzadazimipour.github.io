@@ -599,7 +599,7 @@
 </head>
 <body>
 <nav style="position:fixed;top:0;left:0;right:0;z-index:100;background:rgba(10,10,15,0.9);backdrop-filter:blur(10px);border-bottom:1px solid #1e1e2e;padding:12px 24px;">
-  <a href="../index.html" style="color:#00f5c4;text-decoration:none;font-family:'Space Mono',monospace;font-size:13px;letter-spacing:1px;">← Back to Portfolio</a>
+  <a href="../index.html#blog" style="color:#00f5c4;text-decoration:none;font-family:'Space Mono',monospace;font-size:13px;letter-spacing:1px;">← Back to Portfolio</a>
 </nav>
 <div class="page" style="padding-top:80px;">
 
@@ -758,7 +758,7 @@
         <div class="loop-arrow">→</div>
         <div class="loop-step" style="border-color:var(--accent3); color:var(--accent3)">👁️ Observe Result</div>
         <div class="loop-arrow">→</div>
-        <div class="loop-step" style="border-color:#f472b6; color:#f472b6)">✅ Done? Or repeat</div>
+        <div class="loop-step" style="border-color:#f472b6; color:#f472b6;)">✅ Done? Or repeat</div>
       </div>
     </div>
   </div>
@@ -917,6 +917,261 @@
     <div class="term">
       <span class="term-key">Agentic</span>
       <span class="term-val">Describes AI that acts autonomously over multiple steps, using tools, rather than just responding to one message.</span>
+    </div>
+  </div>
+
+  <hr class="divider" />
+
+  <!-- SECTION 7: VIBE CODING & SPEC-DRIVEN DEV -->
+  <p class="section-label">07 — The New Workflow</p>
+  <p class="section-title">Vibe Coding & Spec-Driven Development</p>
+
+  <div class="agent-diagram" style="margin-bottom:48px;">
+    <div style="display:grid; grid-template-columns:1fr 1fr; gap:24px; margin-bottom:32px;">
+      <div>
+        <div style="font-family:'Space Mono',monospace; font-size:10px; letter-spacing:2px; color:var(--accent2); text-transform:uppercase; margin-bottom:12px;">🎵 Vibe Coding</div>
+        <div style="font-size:0.82rem; color:var(--muted); line-height:1.7; margin-bottom:12px;">You describe what you want in natural language and let the AI write the code. You "vibe" with the output — iterate conversationally rather than writing every line yourself.</div>
+        <div style="background:var(--surface); border:1px solid var(--border); border-radius:8px; padding:14px;">
+          <div style="font-family:'Space Mono',monospace; font-size:10px; color:var(--accent1); margin-bottom:8px;">EXAMPLE</div>
+          <div style="font-size:0.75rem; color:var(--muted); line-height:1.6;">"Build me a Compose screen with a pie chart showing portfolio allocation. Each slice should be tappable."<br><br>→ Agent writes the full screen, ViewModel, and chart logic.</div>
+        </div>
+      </div>
+      <div>
+        <div style="font-family:'Space Mono',monospace; font-size:10px; letter-spacing:2px; color:var(--accent3); text-transform:uppercase; margin-bottom:12px;">📋 Spec-Driven Dev (Kiro's Model)</div>
+        <div style="font-size:0.82rem; color:var(--muted); line-height:1.7; margin-bottom:12px;">Write a structured spec first (requirements, data model, acceptance criteria). Then give it to the agent. The agent stays grounded — less hallucination, more predictable output.</div>
+        <div style="background:var(--surface); border:1px solid var(--border); border-radius:8px; padding:14px;">
+          <div style="font-family:'Space Mono',monospace; font-size:10px; color:var(--accent3); margin-bottom:8px;">KIRO'S SPEC FILES</div>
+          <div style="font-size:0.75rem; color:var(--muted); line-height:1.6;"><code style="color:var(--accent1)">.kiro/specs/feature.md</code> — what to build<br><code style="color:var(--accent1)">.kiro/steering/</code> — rules & conventions<br><code style="color:var(--accent1)">.kiro/hooks/</code> — auto-triggered agents</div>
+        </div>
+      </div>
+    </div>
+    <div style="margin-top:8px;">
+      <div style="font-family:'Space Mono',monospace; font-size:10px; letter-spacing:2px; color:var(--muted); text-transform:uppercase; margin-bottom:12px;">Spec-Driven Flow:</div>
+      <div class="loop-diagram">
+        <div class="loop-step" style="border-color:var(--accent2);color:var(--accent2)">📝 Write Spec</div>
+        <div class="loop-arrow">→</div>
+        <div class="loop-step" style="border-color:var(--accent4);color:var(--accent4)">🤖 Agent Reads Spec</div>
+        <div class="loop-arrow">→</div>
+        <div class="loop-step" style="border-color:var(--accent1);color:var(--accent1)">⚡ Generates Code</div>
+        <div class="loop-arrow">→</div>
+        <div class="loop-step" style="border-color:var(--accent3);color:var(--accent3)">🔍 You Review</div>
+        <div class="loop-arrow">→</div>
+        <div class="loop-step" style="border-color:#f472b6;color:#f472b6">✏️ Refine Spec</div>
+      </div>
+    </div>
+    <div style="margin-top:16px; background:rgba(249,115,22,0.08); border:1px solid rgba(249,115,22,0.2); border-radius:8px; padding:14px; font-size:0.78rem; color:var(--muted); line-height:1.6;">
+      <span style="color:var(--accent3); font-weight:700;">Key insight for you:</span> Your Custorix SDLC docs in Notion are already a spec. You can point Kiro or Claude Code at them and get predictable, architecture-aware code generation.
+    </div>
+  </div>
+
+  <!-- SECTION 8: MULTI-AGENT SYSTEMS -->
+  <p class="section-label">08 — Orchestration</p>
+  <p class="section-title">Multi-Agent Systems & Frameworks</p>
+
+  <div class="hierarchy-container" style="margin-bottom:48px;">
+    <div style="display:grid; grid-template-columns:1fr 1fr; gap:32px; margin-bottom:28px;">
+      <div>
+        <div style="font-family:'Space Mono',monospace; font-size:10px; letter-spacing:2px; color:var(--accent1); text-transform:uppercase; margin-bottom:10px;">What is a Multi-Agent System?</div>
+        <div style="font-size:0.82rem; color:var(--muted); line-height:1.7;">Instead of one agent doing everything, you have specialized agents that hand off tasks to each other. An <strong style="color:var(--text)">Orchestrator</strong> agent plans and delegates; <strong style="color:var(--text)">Worker</strong> agents execute specific tasks.</div>
+      </div>
+      <div>
+        <div style="font-family:'Space Mono',monospace; font-size:10px; letter-spacing:2px; color:var(--accent2); text-transform:uppercase; margin-bottom:10px;">Why It Matters</div>
+        <div style="font-size:0.82rem; color:var(--muted); line-height:1.7;">Each agent only sees what it needs (smaller context = cheaper + more accurate). Complex workflows like "analyze portfolio → fetch prices → generate report → send email" become manageable.</div>
+      </div>
+    </div>
+
+    <!-- Multi-agent diagram -->
+    <div style="display:flex; flex-direction:column; align-items:center; gap:12px; margin-bottom:28px;">
+      <div style="background:linear-gradient(135deg,rgba(124,106,247,0.2),rgba(0,245,196,0.1)); border:2px solid var(--accent2); border-radius:10px; padding:14px 32px; font-weight:700; font-size:0.9rem;">🎯 Orchestrator Agent<br><span style="font-size:0.7rem; font-weight:400; color:var(--muted);">Plans, delegates, assembles results</span></div>
+      <div style="display:flex; gap:8px; align-items:center; color:var(--accent2); font-size:1.2rem;">↙ &nbsp;&nbsp;&nbsp;↓ &nbsp;&nbsp;&nbsp;↘</div>
+      <div style="display:flex; gap:12px; flex-wrap:wrap; justify-content:center;">
+        <div style="background:var(--surface); border:1px solid rgba(0,245,196,0.3); border-radius:8px; padding:12px 20px; text-align:center; font-size:0.78rem;">🔍 Research Agent<br><span style="color:var(--muted); font-size:0.7rem;">fetches prices / news</span></div>
+        <div style="background:var(--surface); border:1px solid rgba(56,189,248,0.3); border-radius:8px; padding:12px 20px; text-align:center; font-size:0.78rem;">📊 Analysis Agent<br><span style="color:var(--muted); font-size:0.7rem;">calculates risk metrics</span></div>
+        <div style="background:var(--surface); border:1px solid rgba(249,115,22,0.3); border-radius:8px; padding:12px 20px; text-align:center; font-size:0.78rem;">✍️ Writer Agent<br><span style="color:var(--muted); font-size:0.7rem;">generates report text</span></div>
+      </div>
+    </div>
+
+    <!-- Frameworks -->
+    <div style="font-family:'Space Mono',monospace; font-size:10px; letter-spacing:2px; color:var(--muted); text-transform:uppercase; margin-bottom:14px;">Key Frameworks</div>
+    <div style="display:grid; grid-template-columns:repeat(auto-fit, minmax(200px,1fr)); gap:12px;">
+      <div style="background:var(--surface); border:1px solid var(--border); border-radius:8px; padding:16px;">
+        <div style="font-weight:700; margin-bottom:6px; font-size:0.88rem;">🦜 LangChain</div>
+        <div style="font-size:0.75rem; color:var(--muted); line-height:1.5;">Python/JS framework for chaining LLM calls + tools. The most popular. Think of it as a toolkit for building pipelines that combine prompts, retrievers, and agents.</div>
+      </div>
+      <div style="background:var(--surface); border:1px solid var(--border); border-radius:8px; padding:16px;">
+        <div style="font-weight:700; margin-bottom:6px; font-size:0.88rem;">🕸️ LangGraph</div>
+        <div style="font-size:0.75rem; color:var(--muted); line-height:1.5;">Built on LangChain. Models workflows as a graph (nodes = steps, edges = transitions). Great for complex multi-agent flows with loops and branching logic.</div>
+      </div>
+      <div style="background:var(--surface); border:1px solid var(--border); border-radius:8px; padding:16px;">
+        <div style="font-weight:700; margin-bottom:6px; font-size:0.88rem;">🏔️ Amazon Bedrock Agents</div>
+        <div style="font-size:0.75rem; color:var(--muted); line-height:1.5;">AWS-managed multi-agent orchestration. You define agents + tools via config, AWS handles the orchestration loop. Scales well, integrates with AWS services (S3, Lambda, DynamoDB).</div>
+      </div>
+      <div style="background:var(--surface); border:1px solid var(--border); border-radius:8px; padding:16px;">
+        <div style="font-weight:700; margin-bottom:6px; font-size:0.88rem;">🤝 AutoGen (Microsoft)</div>
+        <div style="font-size:0.75rem; color:var(--muted); line-height:1.5;">Agents that converse with each other. One agent critiques another's output. Used for coding tasks where a "reviewer" agent checks a "coder" agent's work.</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- SECTION 9: CONTEXT ENGINEERING -->
+  <p class="section-label">09 — The Real Skill</p>
+  <p class="section-title">Context Engineering & Rules Files</p>
+
+  <div class="agent-diagram" style="margin-bottom:48px;">
+    <div style="display:grid; grid-template-columns:1fr 1fr; gap:24px; margin-bottom:24px;">
+      <div>
+        <div style="font-family:'Space Mono',monospace; font-size:10px; letter-spacing:2px; color:var(--accent1); text-transform:uppercase; margin-bottom:10px;">What is Context Engineering?</div>
+        <div style="font-size:0.82rem; color:var(--muted); line-height:1.7; margin-bottom:12px;">Prompt engineering = writing a good message. Context engineering = <strong style="color:var(--text)">deliberately managing everything the LLM sees</strong> — system prompts, codebase structure, memory, retrieved docs, tool results. This is the senior engineer skill for AI.</div>
+        <div style="background:rgba(0,245,196,0.06); border:1px solid rgba(0,245,196,0.2); border-radius:8px; padding:12px; font-size:0.75rem; color:var(--muted); line-height:1.6;">
+          <span style="color:var(--accent1); font-weight:700;">Analogy:</span> Giving a new dev your full codebase + architecture docs + coding standards before asking them to write a feature. The quality of their output depends entirely on what you gave them upfront.
+        </div>
+      </div>
+      <div>
+        <div style="font-family:'Space Mono',monospace; font-size:10px; letter-spacing:2px; color:var(--accent2); text-transform:uppercase; margin-bottom:10px;">The Context Window — What Goes In</div>
+        <div style="display:flex; flex-direction:column; gap:6px;">
+          <div style="background:var(--surface); border-left:3px solid var(--accent2); border-radius:4px; padding:8px 12px; font-size:0.75rem;"><span style="color:var(--accent2)">System Prompt</span> — rules, persona, coding standards</div>
+          <div style="background:var(--surface); border-left:3px solid var(--accent1); border-radius:4px; padding:8px 12px; font-size:0.75rem;"><span style="color:var(--accent1)">Codebase Files</span> — relevant source files, interfaces</div>
+          <div style="background:var(--surface); border-left:3px solid var(--accent4); border-radius:4px; padding:8px 12px; font-size:0.75rem;"><span style="color:var(--accent4)">RAG / Docs</span> — retrieved architecture docs, API specs</div>
+          <div style="background:var(--surface); border-left:3px solid var(--accent3); border-radius:4px; padding:8px 12px; font-size:0.75rem;"><span style="color:var(--accent3)">Conversation History</span> — prior turns, decisions made</div>
+          <div style="background:var(--surface); border-left:3px solid #f472b6; border-radius:4px; padding:8px 12px; font-size:0.75rem;"><span style="color:#f472b6">Tool Results</span> — output of previous tool calls</div>
+          <div style="background:var(--surface); border-left:3px solid #facc15; border-radius:4px; padding:8px 12px; font-size:0.75rem;"><span style="color:#facc15">User Message</span> — what you just typed</div>
+        </div>
+      </div>
+    </div>
+
+    <div style="font-family:'Space Mono',monospace; font-size:10px; letter-spacing:2px; color:var(--muted); text-transform:uppercase; margin-bottom:14px;">Rules Files — How Each Tool Injects Context</div>
+    <div style="display:grid; grid-template-columns:repeat(auto-fit, minmax(200px,1fr)); gap:10px;">
+      <div style="background:var(--surface); border:1px solid var(--border); border-radius:8px; padding:14px;">
+        <div style="font-family:'Space Mono',monospace; font-size:0.7rem; color:var(--accent2); margin-bottom:6px;">CURSOR</div>
+        <code style="font-size:0.72rem; color:var(--accent1);">.cursorrules</code>
+        <div style="font-size:0.72rem; color:var(--muted); margin-top:6px; line-height:1.5;">Plain text file in your repo root. Cursor injects it into every prompt. Put your architecture decisions, naming conventions, and forbidden patterns here.</div>
+      </div>
+      <div style="background:var(--surface); border:1px solid var(--border); border-radius:8px; padding:14px;">
+        <div style="font-family:'Space Mono',monospace; font-size:0.7rem; color:var(--accent3); margin-bottom:6px;">KIRO</div>
+        <code style="font-size:0.72rem; color:var(--accent1);">.kiro/steering/*.md</code>
+        <div style="font-size:0.72rem; color:var(--muted); margin-top:6px; line-height:1.5;">Markdown steering docs. Always-on rules for the agent. "Always use BigDecimal for money", "Use Clean Architecture modules", etc.</div>
+      </div>
+      <div style="background:var(--surface); border:1px solid var(--border); border-radius:8px; padding:14px;">
+        <div style="font-family:'Space Mono',monospace; font-size:0.7rem; color:var(--accent4); margin-bottom:6px;">CLAUDE CODE</div>
+        <code style="font-size:0.72rem; color:var(--accent1);">CLAUDE.md</code>
+        <div style="font-size:0.72rem; color:var(--muted); margin-top:6px; line-height:1.5;">Drop a CLAUDE.md at your repo root. Claude Code reads it on every session — project structure, build commands, constraints, preferred patterns.</div>
+      </div>
+      <div style="background:var(--surface); border:1px solid var(--border); border-radius:8px; padding:14px;">
+        <div style="font-family:'Space Mono',monospace; font-size:0.7rem; color:var(--accent1); margin-bottom:6px;">GITHUB COPILOT</div>
+        <code style="font-size:0.72rem; color:var(--accent1)">.github/copilot-instructions.md</code>
+        <div style="font-size:0.72rem; color:var(--muted); margin-top:6px; line-height:1.5;">Repository-level instructions file. Copilot reads this automatically across all chats in that workspace.</div>
+      </div>
+    </div>
+    <div style="margin-top:14px; background:rgba(124,106,247,0.08); border:1px solid rgba(124,106,247,0.2); border-radius:8px; padding:14px; font-size:0.78rem; color:var(--muted); line-height:1.6;">
+      <span style="color:var(--accent2); font-weight:700;">Your action:</span> Create a <code style="color:var(--accent1)">CLAUDE.md</code> and <code style="color:var(--accent1)">.kiro/steering/android.md</code> in the Custorix repo with your architecture rules (Clean Architecture modules, BigDecimal constraint, Room as SSOT, etc.). Every AI session will be architecture-aware from the first message.
+    </div>
+  </div>
+
+  <!-- SECTION 10: LLM RELIABILITY & EVALS -->
+  <p class="section-label">10 — Trust But Verify</p>
+  <p class="section-title">LLM Reliability, Evals & Guardrails</p>
+
+  <div class="hierarchy-container" style="margin-bottom:48px;">
+    <div style="display:grid; grid-template-columns:1fr 1fr; gap:24px; margin-bottom:24px;">
+      <div>
+        <div style="font-family:'Space Mono',monospace; font-size:10px; letter-spacing:2px; color:var(--accent3); text-transform:uppercase; margin-bottom:10px;">The Problem</div>
+        <div style="display:flex; flex-direction:column; gap:8px;">
+          <div style="background:rgba(249,115,22,0.08); border:1px solid rgba(249,115,22,0.2); border-radius:8px; padding:12px; font-size:0.78rem; color:var(--muted); line-height:1.5;"><span style="color:var(--accent3);">🌀 Hallucination</span> — LLM confidently returns wrong data. Critical for a crypto app showing portfolio values.</div>
+          <div style="background:rgba(249,115,22,0.08); border:1px solid rgba(249,115,22,0.2); border-radius:8px; padding:12px; font-size:0.78rem; color:var(--muted); line-height:1.5;"><span style="color:var(--accent3);">🎲 Non-determinism</span> — Same prompt → different output each time. Hard to test, hard to trust.</div>
+          <div style="background:rgba(249,115,22,0.08); border:1px solid rgba(249,115,22,0.2); border-radius:8px; padding:12px; font-size:0.78rem; color:var(--muted); line-height:1.5;"><span style="color:var(--accent3);">💸 Cost drift</span> — Badly designed prompts burn tokens. Agents in a loop can rack up costs fast.</div>
+          <div style="background:rgba(249,115,22,0.08); border:1px solid rgba(249,115,22,0.2); border-radius:8px; padding:12px; font-size:0.78rem; color:var(--muted); line-height:1.5;"><span style="color:var(--accent3);">🔒 Prompt injection</span> — Malicious user input hijacks agent behavior. Relevant if users can type free text.</div>
+        </div>
+      </div>
+      <div>
+        <div style="font-family:'Space Mono',monospace; font-size:10px; letter-spacing:2px; color:var(--accent1); text-transform:uppercase; margin-bottom:10px;">The Solutions</div>
+        <div style="display:flex; flex-direction:column; gap:8px;">
+          <div style="background:rgba(0,245,196,0.06); border:1px solid rgba(0,245,196,0.2); border-radius:8px; padding:12px; font-size:0.78rem; color:var(--muted); line-height:1.5;"><span style="color:var(--accent1);">✅ Evals</span> — Automated tests for LLM output. Run a set of known inputs, score outputs. Like unit tests but for AI features.</div>
+          <div style="background:rgba(0,245,196,0.06); border:1px solid rgba(0,245,196,0.2); border-radius:8px; padding:12px; font-size:0.78rem; color:var(--muted); line-height:1.5;"><span style="color:var(--accent1);">🛡️ Guardrails</span> — Input/output validators. Reject responses that don't match expected schema or contain disallowed content.</div>
+          <div style="background:rgba(0,245,196,0.06); border:1px solid rgba(0,245,196,0.2); border-radius:8px; padding:12px; font-size:0.78rem; color:var(--muted); line-height:1.5;"><span style="color:var(--accent1);">🌡️ Temperature=0</span> — Set temp to 0 for structured data tasks. Forces the model to be deterministic and consistent.</div>
+          <div style="background:rgba(0,245,196,0.06); border:1px solid rgba(0,245,196,0.2); border-radius:8px; padding:12px; font-size:0.78rem; color:var(--muted); line-height:1.5;"><span style="color:var(--accent1);">📐 Structured Output</span> — Force LLM to respond in JSON schema. Parse + validate it. Never trust free-form text for data.</div>
+        </div>
+      </div>
+    </div>
+
+    <div style="font-family:'Space Mono',monospace; font-size:10px; letter-spacing:2px; color:var(--muted); text-transform:uppercase; margin-bottom:12px;">Eval Pipeline for an Android AI Feature</div>
+    <div class="loop-diagram">
+      <div class="loop-step" style="border-color:var(--accent2);color:var(--accent2)">📂 Test Dataset<br><span style="font-size:0.65rem;color:var(--muted)">known inputs/outputs</span></div>
+      <div class="loop-arrow">→</div>
+      <div class="loop-step" style="border-color:var(--accent4);color:var(--accent4)">🤖 Run LLM<br><span style="font-size:0.65rem;color:var(--muted)">your prompt + model</span></div>
+      <div class="loop-arrow">→</div>
+      <div class="loop-step" style="border-color:var(--accent1);color:var(--accent1)">📏 Score Output<br><span style="font-size:0.65rem;color:var(--muted)">exact / fuzzy / LLM judge</span></div>
+      <div class="loop-arrow">→</div>
+      <div class="loop-step" style="border-color:var(--accent3);color:var(--accent3)">📊 Track Over Time<br><span style="font-size:0.65rem;color:var(--muted)">catch regressions</span></div>
+    </div>
+    <div style="margin-top:12px; font-size:0.75rem; color:var(--muted); text-align:center;">Tools: <span style="color:var(--accent1)">Braintrust</span> · <span style="color:var(--accent1)">PromptFoo</span> · <span style="color:var(--accent1)">LangSmith</span> · <span style="color:var(--accent1)">Anthropic Evals</span></div>
+  </div>
+
+  <!-- SECTION 11: MODEL PROVIDERS VS PLATFORMS -->
+  <p class="section-label">11 — Picking Your Stack</p>
+  <p class="section-title">Model Providers vs Platforms vs Runtimes</p>
+
+  <div class="agent-diagram" style="margin-bottom:48px;">
+    <div style="display:grid; grid-template-columns:1fr; gap:20px;">
+
+      <!-- Layer 1 -->
+      <div>
+        <div style="font-family:'Space Mono',monospace; font-size:10px; letter-spacing:2px; color:var(--accent2); text-transform:uppercase; margin-bottom:12px;">Layer 1 — Model Labs (they train the models)</div>
+        <div style="display:flex; gap:10px; flex-wrap:wrap;">
+          <div style="background:var(--surface); border:1px solid rgba(124,106,247,0.3); border-radius:8px; padding:12px 18px; font-size:0.8rem; text-align:center;">🟢 <strong>OpenAI</strong><br><span style="font-size:0.7rem;color:var(--muted);">GPT-4o, o1, o3</span></div>
+          <div style="background:var(--surface); border:1px solid rgba(124,106,247,0.3); border-radius:8px; padding:12px 18px; font-size:0.8rem; text-align:center;">🟠 <strong>Anthropic</strong><br><span style="font-size:0.7rem;color:var(--muted);">Claude 3.5/3.7</span></div>
+          <div style="background:var(--surface); border:1px solid rgba(124,106,247,0.3); border-radius:8px; padding:12px 18px; font-size:0.8rem; text-align:center;">🔵 <strong>Google</strong><br><span style="font-size:0.7rem;color:var(--muted);">Gemini 1.5/2.0</span></div>
+          <div style="background:var(--surface); border:1px solid rgba(124,106,247,0.3); border-radius:8px; padding:12px 18px; font-size:0.8rem; text-align:center;">🦙 <strong>Meta</strong><br><span style="font-size:0.7rem;color:var(--muted);">Llama 3 (open)</span></div>
+          <div style="background:var(--surface); border:1px solid rgba(124,106,247,0.3); border-radius:8px; padding:12px 18px; font-size:0.8rem; text-align:center;">💎 <strong>Mistral</strong><br><span style="font-size:0.7rem;color:var(--muted);">Mistral/Mixtral (open)</span></div>
+        </div>
+      </div>
+
+      <div style="text-align:center; color:var(--muted); font-size:0.8rem;">↓ &nbsp; Model Labs expose an API. But you often don't call them directly in production…</div>
+
+      <!-- Layer 2 -->
+      <div>
+        <div style="font-family:'Space Mono',monospace; font-size:10px; letter-spacing:2px; color:var(--accent3); text-transform:uppercase; margin-bottom:12px;">Layer 2 — Cloud Platforms (managed API access + infra)</div>
+        <div style="display:grid; grid-template-columns:repeat(auto-fit, minmax(200px,1fr)); gap:10px;">
+          <div style="background:var(--surface); border:1px solid rgba(249,115,22,0.3); border-radius:8px; padding:14px;">
+            <div style="font-weight:700; margin-bottom:4px;">🏔️ AWS Bedrock</div>
+            <div style="font-size:0.72rem; color:var(--muted); line-height:1.5;">Access Claude, Llama, Mistral, Titan via one AWS API. Handles auth, logging, rate limits, compliance. Good if your infra is already AWS.</div>
+          </div>
+          <div style="background:var(--surface); border:1px solid rgba(249,115,22,0.3); border-radius:8px; padding:14px;">
+            <div style="font-weight:700; margin-bottom:4px;">🔷 Azure OpenAI</div>
+            <div style="font-size:0.72rem; color:var(--muted); line-height:1.5;">OpenAI models hosted on Azure. Enterprise compliance (GDPR, SOC2). Same GPT-4 but your data stays in your Azure tenant.</div>
+          </div>
+          <div style="background:var(--surface); border:1px solid rgba(249,115,22,0.3); border-radius:8px; padding:14px;">
+            <div style="font-weight:700; margin-bottom:4px;">🌊 Google Vertex AI</div>
+            <div style="font-size:0.72rem; color:var(--muted); line-height:1.5;">Gemini + open models via Google Cloud. Integrates deeply with Google services. Required if you want Gemini Nano in production pipelines.</div>
+          </div>
+          <div style="background:var(--surface); border:1px solid rgba(249,115,22,0.3); border-radius:8px; padding:14px;">
+            <div style="font-weight:700; margin-bottom:4px;">⚡ Groq / Together AI</div>
+            <div style="font-size:0.72rem; color:var(--muted); line-height:1.5;">Run open-source models (Llama, Mistral) at very high speed. Great for low-latency use cases. Cheaper than frontier models for simple tasks.</div>
+          </div>
+        </div>
+      </div>
+
+      <div style="text-align:center; color:var(--muted); font-size:0.8rem;">↓ &nbsp; Platforms sit between you and the model. You call their API, they route to the model.</div>
+
+      <!-- Layer 3 -->
+      <div>
+        <div style="font-family:'Space Mono',monospace; font-size:10px; letter-spacing:2px; color:var(--accent4); text-transform:uppercase; margin-bottom:12px;">Layer 3 — Your App (how you call it from Android)</div>
+        <div style="display:flex; gap:10px; flex-wrap:wrap;">
+          <div style="background:var(--surface); border:1px solid rgba(56,189,248,0.3); border-radius:8px; padding:12px 18px; font-size:0.78rem;">📡 <strong>Retrofit</strong> — call any REST API<br><span style="font-size:0.7rem;color:var(--muted);">OpenAI, Anthropic, Bedrock, Vertex</span></div>
+          <div style="background:var(--surface); border:1px solid rgba(56,189,248,0.3); border-radius:8px; padding:12px 18px; font-size:0.78rem;">🔥 <strong>Firebase Genkit</strong> — Google's mobile AI SDK<br><span style="font-size:0.7rem;color:var(--muted);">simplifies Gemini integration on Android</span></div>
+          <div style="background:var(--surface); border:1px solid rgba(56,189,248,0.3); border-radius:8px; padding:12px 18px; font-size:0.78rem;">📱 <strong>Gemini Nano SDK</strong> — on-device<br><span style="font-size:0.7rem;color:var(--muted);">AICore API, no network call</span></div>
+        </div>
+      </div>
+
+      <!-- Decision guide -->
+      <div style="background:rgba(56,189,248,0.06); border:1px solid rgba(56,189,248,0.2); border-radius:8px; padding:16px; margin-top:4px;">
+        <div style="font-family:'Space Mono',monospace; font-size:10px; color:var(--accent4); letter-spacing:1px; margin-bottom:10px; text-transform:uppercase;">Quick Decision Guide for Your App</div>
+        <div style="display:grid; grid-template-columns:1fr 1fr; gap:8px; font-size:0.75rem; color:var(--muted); line-height:1.6;">
+          <div>🏎️ <strong style="color:var(--text)">Fastest to ship:</strong> Call OpenAI / Anthropic directly via Retrofit</div>
+          <div>🔒 <strong style="color:var(--text)">Max privacy:</strong> Gemini Nano on-device, no cloud call at all</div>
+          <div>💰 <strong style="color:var(--text)">Cheapest at scale:</strong> Groq with Llama 3 for simple summaries</div>
+          <div>☁️ <strong style="color:var(--text)">Enterprise / AWS already:</strong> Bedrock with Claude Haiku</div>
+        </div>
+      </div>
     </div>
   </div>
 
